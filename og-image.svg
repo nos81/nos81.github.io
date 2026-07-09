@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Nimba Oshnik — NO">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#3f5c8c" stop-opacity="0.6"/>
+      <stop offset="65%" stop-color="#3f5c8c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mono" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#a9bce0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0f1013"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <text x="600" y="368" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="300" letter-spacing="12" fill="url(#mono)">NO</text>
+  <text x="600" y="470" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="46" letter-spacing="16" fill="#93b1e0">NIMBA OSHNIK</text>
+  <text x="600" y="546" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="27" letter-spacing="5" fill="#6c86b4">Quantum Physicist · www.noshnik.com</text>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "name": "Nimba Oshnik",
+  "short_name": "Oshnik",
+  "description": "Physicist working on diamond-based quantum sensing for advanced semiconductor failure analysis and metrology.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#070709",
+  "theme_color": "#070709",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
