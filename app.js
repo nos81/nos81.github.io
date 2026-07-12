@@ -1,5 +1,3 @@
-/* Single-page enhancements: scroll progress, sticky header, scroll-spy nav,
-   reveal-on-scroll, hero parallax. The page is fully usable without this. */
 (function () {
   "use strict";
 
@@ -22,7 +20,6 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  // Subtle parallax on the hero glow.
   if (hero && !reduce) {
     window.addEventListener("scroll", function () {
       var y = window.scrollY || window.pageYOffset;
@@ -30,7 +27,6 @@
     }, { passive: true });
   }
 
-  // Reveal-on-scroll for .reveal / .stagger.
   var items = document.querySelectorAll(".reveal, .stagger");
   if (items.length && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
@@ -46,7 +42,6 @@
     items.forEach(function (el) { el.classList.add("is-visible"); });
   }
 
-  // Scroll-spy: highlight the nav link for the section in view.
   var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));
   var links = {};
   document.querySelectorAll('.nav a[href^="#"]').forEach(function (a) {
@@ -67,7 +62,74 @@
   }
 })();
 
-/* Click-to-expand lightbox for the mountains gallery. */
+(function () {
+  "use strict";
+
+  var reduce = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  var layers = {};
+  Array.prototype.forEach.call(document.querySelectorAll(".bg-layer"), function (l) {
+    layers[l.getAttribute("data-scene")] = l;
+  });
+  var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"))
+    .filter(function (s) { return layers[s.id]; });
+  var hero = document.querySelector(".hero");
+  var pin = document.querySelector(".hero__pin");
+  var blends = Array.prototype.slice.call(document.querySelectorAll("[data-blend]"));
+  if (!sections.length && !blends.length) return;
+
+  function clamp01(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+
+  function frame() {
+    ticking = false;
+    var vh = window.innerHeight;
+    if (!vh) return;
+
+    var band = vh * 0.4;
+    var yc = vh / 2;
+    var usable = false;
+    sections.forEach(function (s) {
+      var r = s.getBoundingClientRect();
+      if (r.height > 0) usable = true;
+      var top = Math.max(r.top, yc - band);
+      var bot = Math.min(r.bottom, yc + band);
+      layers[s.id].style.opacity = clamp01((bot - top) / (2 * band)).toFixed(3);
+    });
+    if (!usable) {      sections.forEach(function (s, i) { layers[s.id].style.opacity = i === 0 ? "1" : "0"; });
+      return;
+    }
+
+    if (hero && pin) {
+      var hr = hero.getBoundingClientRect();
+      var range = hr.height - pin.offsetHeight;
+      hero.style.setProperty("--hp", (range > 0 ? clamp01(-hr.top / range) : 0).toFixed(4));
+    }
+
+    blends.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (!r.height) return;
+      el.style.setProperty("--enter", clamp01((vh - r.top) / (vh * 0.28)).toFixed(3));
+      el.style.setProperty("--exit", clamp01(r.bottom / (vh * 0.24)).toFixed(3));
+    });
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      (window.requestAnimationFrame || window.setTimeout)(frame);
+    }
+  }
+
+  if (reduce) {
+    if (sections.length) layers[sections[0].id].style.opacity = "1";
+    return;
+  }
+  frame();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+})();
+
 (function () {
   "use strict";
 
@@ -158,8 +220,6 @@
   });
 })();
 
-
-/* Light / dark theme toggle. This edition defaults to dark; the choice persists. */
 (function () {
   "use strict";
   var btn = document.querySelector(".theme-toggle");
@@ -183,5 +243,20 @@
     root.setAttribute("data-theme", next);
     try { localStorage.setItem("theme", next); } catch (e) {}
     paint(next);
+  });
+})();
+
+(function () {
+  "use strict";
+  var btn = document.querySelector(".to-top");
+  if (!btn) return;
+  function update() {
+    var y = window.scrollY || window.pageYOffset || 0;
+    btn.classList.toggle("is-shown", y > (window.innerHeight || 800) * 1.5);
+  }
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  btn.addEventListener("click", function () {
+    try { window.scrollTo({ top: 0 }); } catch (e) { window.scrollTo(0, 0); }
   });
 })();
