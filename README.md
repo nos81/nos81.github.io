@@ -6,7 +6,7 @@ Live at **[www.noshnik.com](https://www.noshnik.com)** · hosted on GitHub Pages
 
 ## About
 
-A hand-written static site — no framework, no build step, no dependencies.
+A hand-written static site; no framework, no build step, no dependencies.
 Open `index.html` in a browser and it runs.
 
 - **Single-page, long-scroll design.** A fixed background "scene" stack crossfades
@@ -29,15 +29,14 @@ Open `index.html` in a browser and it runs.
 | `style.css`, `app.js`, `theme-init.js` | All styling and behaviour |
 | `assets/` | Photographs, portrait, illustrations |
 | `fonts/` | Self-hosted Source Serif 4 (SIL OFL) |
-| `Nimba-Oshnik-CV.pdf` | Curriculum vitae |
 | `CNAME`, `.nojekyll`, `robots.txt`, `sitemap.xml`, `site.webmanifest` | Hosting, i
 
 Type is **Iowan Old Style** with a self-hosted **Source Serif 4** fallback, paired
-with Helvetica — so the serif looks right on Apple devices *and* everywhere else.
+with Helvetica.
 
 ## Security & privacy
 
-GitHub Pages can't set HTTP response headers, so hardening is done at the document level:
+GitHub Pages can't set HTTP response headers; hardening is done at the document level:
 
 - A strict **Content-Security-Policy** meta (`script-src 'self'`, `style-src 'self'`,
   no inline scripts or styles anywhere), plus a strict referrer policy.
