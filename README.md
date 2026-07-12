@@ -57,8 +57,7 @@ self-hosted 1200×630 PNG preview; JSON-LD `Person` schema; `sitemap.xml` and
 ## Copyright
 
 © Nimba Oshnik. **All photographs, illustrations and written content are mine and
-are not licensed for reuse.** The mountain photographs carry a visible copyright
-notice burned into the image.
+are not licensed for reuse.** 
 
 Fonts in `fonts/` are third-party and licensed separately under the
 [SIL Open Font License](fonts/OFL.txt).
