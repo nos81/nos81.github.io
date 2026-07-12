@@ -28,8 +28,9 @@ Open `index.html` in a browser and it runs.
 | `404.html` | Custom not-found page |
 | `style.css`, `app.js`, `theme-init.js` | All styling and behaviour |
 | `assets/` | Photographs, portrait, illustrations |
-| `fonts/` | Self-hosted Source Serif 4 (SIL OFL) |
-| `CNAME`, `.nojekyll`, `robots.txt`, `sitemap.xml`, `site.webmanifest` | Hosting, i
+| `fonts/` | Self-hosted Source Serif 4 [SIL OFL] |
+| `Nimba-Oshnik-CV.pdf` | Curriculum vitae |
+| `CNAME`, `.nojekyll`, `robots.txt`, `sitemap.xml`, `site.webmanifest` | Hosting, indexing and PWA metadata |
 
 Type is **Iowan Old Style** with a self-hosted **Source Serif 4** fallback, paired
 with Helvetica.
@@ -38,8 +39,8 @@ with Helvetica.
 
 GitHub Pages can't set HTTP response headers; hardening is done at the document level:
 
-- A strict **Content-Security-Policy** meta (`script-src 'self'`, `style-src 'self'`,
-  no inline scripts or styles anywhere), plus a strict referrer policy.
+- A strict **Content-Security-Policy** meta [`script-src 'self'`, `style-src 'self'`,
+  no inline scripts or styles anywhere], plus a strict referrer policy.
 - No third-party scripts, no analytics, no cookies, no external fonts or CDNs —
   every asset is served from this origin.
 - All external links carry `rel="noopener noreferrer"`.
@@ -51,7 +52,7 @@ Not achievable without a proxy/CDN in front: HSTS, `X-Frame-Options` /
 
 Per-page title, description and canonical URL; Open Graph + Twitter cards with a
 self-hosted 1200×630 PNG preview; JSON-LD `Person` schema; `sitemap.xml` and
-`robots.txt`; full icon set (SVG, ICO, Apple touch, maskable PWA).
+`robots.txt`; full icon set [SVG, ICO, Apple touch, maskable PWA].
 
 ## Copyright
 
