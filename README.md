@@ -1,62 +1,64 @@
-# noshnik.com — single-page immersive-scroll edition
+# noshnik.com
 
-Personal website of **Nimba Oshnik** — quantum-sensing physicist. This is the
-**one-page, Apple-style long-scroll dark edition**: hero → about → research →
-outreach → mountains → contact on a single scrollable page, with a light/dark
-toggle, scroll-spy nav, scroll progress bar, and a photo lightbox.
+Personal website of **Nimba Oshnik**.
 
-> **This is one of two mutually-exclusive designs for `www.noshnik.com`.**
-> The other is the classic multi-page site (`web/`). Both target the same domain
-> and carry the same `CNAME` / canonical URLs — **deploy only one of them.**
-> Pick this repo for the single-page dark look; pick `web/` for the multi-page look.
+Live at **[www.noshnik.com](https://www.noshnik.com)** · hosted on GitHub Pages.
 
-## Contents
+## About
+
+A hand-written static site — no framework, no build step, no dependencies.
+Open `index.html` in a browser and it runs.
+
+- **Single-page, long-scroll design.** A fixed background "scene" stack crossfades
+  between sections as you scroll; the hero pins and dissolves as content moves over it.
+- **Light / dark theme** with a toggle. The choice persists, and an inline-free
+  init script applies it before first paint, so there's no flash of the wrong colours.
+- **Progressive enhancement.** Everything is readable with JavaScript disabled;
+  the scroll effects, gallery lightbox and scroll-spy nav are extras. Fully
+  respects `prefers-reduced-motion`.
+
+## Layout
 
 | Path | Purpose |
-|------|---------|
-| `index.html` | The whole site — all sections on one page |
-| `blog.html` | Blog (draft placeholder), linked from the Outreach section |
+| --- | --- |
+| `index.html` | The site — hero, about, work & research, outreach, gallery, contact |
+| `outreach.html` | Science-outreach portfolio [blog post, infographic, talks] |
+| `blog.html` | Index of notes & writings |
+| `blog-*.html` | Individual blog posts |
 | `404.html` | Custom not-found page |
-| `style.css` | Design system (dark by default, light via the toggle) |
-| `theme-init.js` | Pre-paint theme + no-JS-flash guard (loaded blocking in `<head>`) |
-| `app.js` | Scroll progress, sticky header, scroll-spy, reveal, lightbox, theme toggle |
-| `assets/` | Placeholder SVG imagery |
-| `sitemap.xml`, `robots.txt` | SEO |
-|  `site.webmanifest`, `favicon.svg`, `og-image.png` | Icons / social preview |
-| `.well-known/security.txt` | Security contact (RFC 9116) |
-| `CNAME` | Custom domain (`www.noshnik.com`) |
+| `style.css`, `app.js`, `theme-init.js` | All styling and behaviour |
+| `assets/` | Photographs, portrait, illustrations |
+| `fonts/` | Self-hosted Source Serif 4 (SIL OFL) |
+| `Nimba-Oshnik-CV.pdf` | Curriculum vitae |
+| `CNAME`, `.nojekyll`, `robots.txt`, `sitemap.xml`, `site.webmanifest` | Hosting, i
 
-## Deploy (GitHub Pages)
+Type is **Iowan Old Style** with a self-hosted **Source Serif 4** fallback, paired
+with Helvetica — so the serif looks right on Apple devices *and* everywhere else.
 
-This folder **is** the site root.
+## Security & privacy
 
-1. Create a repo named **`nos81.github.io`** (a user site serves at the domain root).
-2. Put the contents of this folder at the repo root and push to `main`.
-3. **Settings → Pages →** Source = *Deploy from a branch*, Branch = `main` / `/ (root)`.
-4. **Settings → Pages → Custom domain** → confirm `www.noshnik.com` (the `CNAME`
-   file sets this) and tick **Enforce HTTPS**.
+GitHub Pages can't set HTTP response headers, so hardening is done at the document level:
 
-The `.nojekyll` file makes Pages serve files as-is.
+- A strict **Content-Security-Policy** meta (`script-src 'self'`, `style-src 'self'`,
+  no inline scripts or styles anywhere), plus a strict referrer policy.
+- No third-party scripts, no analytics, no cookies, no external fonts or CDNs —
+  every asset is served from this origin.
+- All external links carry `rel="noopener noreferrer"`.
 
-## Security notes
+Not achievable without a proxy/CDN in front: HSTS, `X-Frame-Options` /
+`frame-ancestors`, `X-Content-Type-Options`, `Permissions-Policy`.
 
-Best-effort hardening for a static host, delivered via `<meta>` because GitHub
-Pages cannot set custom HTTP response headers:
+## SEO
 
-- **Content-Security-Policy** — `default-src 'self'`, `object-src 'none'`,
-  `base-uri 'self'`, no inline/remote scripts (theme init is an external
-  `theme-init.js`, and there are no inline styles — so `script-src`/`style-src`
-  are `'self'` with no `'unsafe-inline'`), `upgrade-insecure-requests`.
-- **referrer** — `strict-origin-when-cross-origin`; external links use
-  `rel="noopener noreferrer"`; HTTPS enforced by GitHub Pages.
+Per-page title, description and canonical URL; Open Graph + Twitter cards with a
+self-hosted 1200×630 PNG preview; JSON-LD `Person` schema; `sitemap.xml` and
+`robots.txt`; full icon set (SVG, ICO, Apple touch, maskable PWA).
 
-**Not achievable via meta on GitHub Pages** (need real headers):
-`X-Content-Type-Options`, `X-Frame-Options` / CSP `frame-ancestors`,
-`Permissions-Policy`. Front with a proxy/CDN (e.g. Cloudflare) if required.
+## Copyright
 
-## SEO notes
+© Nimba Oshnik. **All photographs, illustrations and written content are mine and
+are not licensed for reuse.** The mountain photographs carry a visible copyright
+notice burned into the image.
 
-`<title>`/`description`/canonical, Open Graph + Twitter cards, JSON-LD `Person`,
-`sitemap.xml`, `robots.txt`, and a self-hosted 1200×630 `og-image.png`
-social-preview image (PNG, since some crawlers such as Twitter/X and
-Facebook don't rasterise SVG previews).
+Fonts in `fonts/` are third-party and licensed separately under the
+[SIL Open Font License](fonts/OFL.txt).
