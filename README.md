@@ -19,7 +19,7 @@ Open `index.html` in a browser.
 
 | Path | Purpose |
 | --- | --- |
-| `index.html` | Main PAge|
+| `index.html` | Main Page|
 | `outreach.html` | Science-outreach portfolio |
 | `blog.html` | Index of notes & writings |
 | `blog-*.html` | Individual blog posts |
@@ -33,8 +33,7 @@ Open `index.html` in a browser.
 
 ## Copyright
 
-© Nimba Oshnik. **All photographs, illustrations and written content are mine and
-are not licensed for reuse.** 
+© Nimba Oshnik. **All photographs, illustrations and written content are are not licensed for reuse.** 
 
 Fonts in `fonts/` are third-party and licensed separately under the
 [SIL Open Font License](fonts/OFL.txt).
