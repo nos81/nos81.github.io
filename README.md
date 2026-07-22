@@ -1,10 +1,11 @@
 # noshnik.com
 
+
 Personal website of **Nimba Oshnik**.
 
 Live at **[www.noshnik.com](https://www.noshnik.com)** · hosted on GitHub Pages.
 
-## About
+## Layout
 
 A hand-written static site.
 Open `index.html` in a browser.
